@@ -28,13 +28,19 @@
 
 /* ---------- Transparent-at-top header ---------- */
 .site-nav {
-  transition: background 0.3s var(--ease), border-color 0.3s var(--ease),
-    box-shadow 0.3s var(--ease), padding 0.3s var(--ease);
+  /* every switched property is animatable (no `none` values anywhere) */
+  transition: background 0.35s var(--ease), border-color 0.35s var(--ease),
+    box-shadow 0.35s var(--ease), padding 0.35s var(--ease),
+    backdrop-filter 0.35s var(--ease);
 }
 
-/* Transparent (top of home/team pages): breathing room around the bar */
+/* Transparent (top of home/team pages): breathing room around the bar.
+   Uses zero-valued (but animatable) shadows/blur instead of `none`. */
 .site-nav.at-top {
   padding: 12px 0;
+  background: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(0px);
+  box-shadow: 0 2px 12px rgba(17, 17, 17, 0);
 }
 
 /* Scrolled (white) header: compact */
@@ -42,10 +48,16 @@
   padding: 0 0;
 }
 
+/* link colors fade with the header instead of snapping */
+.site-nav .nav-links a,
+.site-nav .wordmark {
+  transition: color 0.35s var(--ease), background 0.2s var(--ease);
+}
+
 .site-nav.at-top {
-  background: transparent;
+  background: rgba(255, 255, 255, 0);
   border-bottom-color: transparent;
-  backdrop-filter: none;
+  backdrop-filter: blur(0px);
 }
 
 .site-nav.at-top .nav-links a {
