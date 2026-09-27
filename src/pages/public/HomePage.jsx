@@ -132,8 +132,10 @@ export default function HomePage() {
         </div>
       </section>
 
+      <ServicesTeaser />
+
       {team.length > 0 ? (
-        <section className="section section-alt" id="home-team">
+        <section className="section" id="home-team">
           <div className="container">
             <SectionHeading
               label="The Team"
@@ -149,7 +151,6 @@ export default function HomePage() {
         </section>
       ) : null}
 
-      <ServicesTeaser />
       <ContactSection />
     </>
   )

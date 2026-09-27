@@ -15,3 +15,6 @@ dist-ssr/
 !.vscode/extensions.json
 .DS_Store
 *.log
+
+# Local-only docs (detailed setup guide stays off GitHub)
+SETUP.local.md
