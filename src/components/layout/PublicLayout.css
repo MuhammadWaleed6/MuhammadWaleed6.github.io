@@ -1,0 +1,145 @@
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--black);
+  color: var(--white);
+  padding: 10px 16px;
+  border-radius: 0 0 8px 0;
+  z-index: 200;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+/* keep mobile menu visible when open even though default is hidden */
+.nav-mobile.open {
+  display: block;
+}
+
+/* ---------- Transparent-at-top header on dark-hero pages ---------- */
+/* (home + team detail pages: hero background shows through the header) */
+.public-shell.is-dark-hero main {
+  padding-top: 0;
+}
+
+/* ---------- Transparent-at-top header ---------- */
+.site-nav {
+  transition: background 0.3s var(--ease), border-color 0.3s var(--ease),
+    box-shadow 0.3s var(--ease);
+}
+
+.site-nav.at-top {
+  background: transparent;
+  border-bottom-color: transparent;
+  backdrop-filter: none;
+}
+
+.site-nav.at-top .nav-links a {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.site-nav.at-top .nav-links a:hover {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.site-nav.at-top .nav-links a.active {
+  color: var(--white);
+  background: rgba(227, 24, 55, 0.55);
+}
+
+.site-nav.at-top .wordmark {
+  color: var(--white);
+}
+
+/* hamburger stays dark — visible on white when menu bar area is over content */
+.site-nav.at-top .nav-toggle {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.site-nav.at-top .nav-toggle span {
+  background: var(--white);
+}
+
+/* once scrolled, everything returns to the solid white look */
+.site-nav.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 12px rgba(17, 17, 17, 0.04);
+}
+
+/* When the mobile menu is open force the solid look for readability */
+.site-nav.menu-open,
+.site-nav.at-top.menu-open {
+  background: rgba(255, 255, 255, 0.98);
+}
+
+.site-nav.at-top.menu-open .nav-links a,
+.site-nav.at-top.menu-open .wordmark {
+  color: var(--black);
+}
+
+.site-nav.menu-open .nav-toggle span {
+  background: var(--black);
+}
+
+/* ---------- Floating back-to-top ---------- */
+.back-to-top {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--red);
+  color: var(--white);
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease),
+    background 0.15s var(--ease);
+  z-index: 150;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.back-to-top:hover {
+  background: var(--red-dark);
+}
+
+.back-to-top:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: 2px;
+}
+
+/* ---------- Footer: brand + 2 link columns + elsewhere ---------- */
+.site-footer .footer-grid {
+  grid-template-columns: 1.4fr 0.8fr 0.8fr 1fr;
+}
+
+@media (max-width: 780px) {
+  .site-footer .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .site-footer .f-brand {
+    grid-column: 1 / -1;
+  }
+}

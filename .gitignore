@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+
+# Environment files (real credentials must never be committed)
+.env
+.env.local
+.env.*.local
+
+# Editor/OS noise
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+*.log

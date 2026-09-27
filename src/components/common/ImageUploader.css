@@ -1,0 +1,42 @@
+.upload-preview {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.upload-preview img {
+  width: 120px;
+  height: 84px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-soft);
+}
+
+.upload-preview-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.upload-zone .upload-hint {
+  display: block;
+  font-size: 11.5px;
+  color: var(--muted-2);
+  margin-top: 4px;
+}
+
+.upload-progress {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.upload-progress > div {
+  height: 100%;
+  background: var(--red);
+  border-radius: 999px;
+  transition: width 0.2s var(--ease);
+}

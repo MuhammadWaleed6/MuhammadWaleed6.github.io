@@ -1,0 +1,76 @@
+.msg-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.msg-row:last-child {
+  border-bottom: none;
+}
+
+.msg-row .dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--red);
+  flex-shrink: 0;
+}
+
+.msg-row .dot.dim {
+  background: transparent;
+  border: 1.5px solid var(--border);
+}
+
+.msg-row .msg-main {
+  flex: 1;
+  min-width: 0;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.msg-row .msg-main .t {
+  font-weight: 700;
+  color: var(--black);
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.msg-row.unread .msg-main .t {
+  font-weight: 800;
+}
+
+.msg-row .msg-main .s {
+  font-size: 12.5px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.msg-row .msg-actions {
+  display: flex;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.msg-body {
+  white-space: pre-wrap;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--charcoal);
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+}

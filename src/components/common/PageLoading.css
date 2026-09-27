@@ -1,0 +1,11 @@
+.page-loading {
+  min-height: 40vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 13.5px;
+  font-weight: 600;
+}

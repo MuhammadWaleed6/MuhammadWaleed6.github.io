@@ -1,0 +1,13 @@
+/* Home page tweaks */
+#home-about .about-grid {
+  align-items: center;
+}
+
+/* About page timeline group titles (shared) */
+.tl-group-title {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin: var(--space-5) 0 var(--space-3);
+}

@@ -1,0 +1,11 @@
+.dash-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+@media (max-width: 900px) {
+  .dash-columns {
+    grid-template-columns: 1fr;
+  }
+}

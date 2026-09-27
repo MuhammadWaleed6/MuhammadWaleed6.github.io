@@ -1,0 +1,32 @@
+/* Hero accent split: name gets red highlight via JSX above */
+.hero h1 .accent {
+  color: var(--red);
+}
+
+/* Availability pill + hero label sit in one aligned row with a proper gap */
+.hero-badges {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: var(--space-5);
+}
+
+.hero-badges .availability-pill {
+  margin-bottom: 0;
+}
+
+.hero-badges .hero-label {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* availability pill open/closed via data attribute */
+.hero .availability-pill[data-open='false'] {
+  opacity: 0.75;
+}
+
+.hero .availability-pill[data-open='false']::before {
+  background: var(--muted-2);
+  box-shadow: 0 0 0 3px rgba(153, 153, 153, 0.18);
+}

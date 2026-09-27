@@ -1,0 +1,98 @@
+.team-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease), transform 0.2s var(--ease);
+}
+
+.team-card:hover {
+  border-color: #d5d5d5;
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.team-card .team-photo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 16 / 10;
+  background: radial-gradient(circle at 70% 20%, rgba(227, 24, 55, 0.14), transparent 55%), var(--charcoal);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.team-card .team-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s var(--ease);
+}
+
+.team-card:hover .team-photo img {
+  transform: scale(1.04);
+}
+
+.team-card .team-initials {
+  font-size: 44px;
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: 0.03em;
+}
+
+.team-card .team-body {
+  padding: var(--space-4) var(--space-5) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex: 1;
+}
+
+.team-card h3 {
+  font-size: 16.5px;
+}
+
+.team-card h3 a {
+  color: var(--black);
+}
+
+.team-card h3 a:hover {
+  color: var(--red);
+}
+
+.team-card .team-role {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.team-card .team-bio {
+  font-size: 13.5px;
+  color: var(--muted);
+  flex: 1;
+}
+
+.team-card .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: var(--space-1);
+}
+
+.team-card .team-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--black);
+  margin-top: var(--space-2);
+}
+
+.team-card .team-more:hover {
+  color: var(--red);
+}
