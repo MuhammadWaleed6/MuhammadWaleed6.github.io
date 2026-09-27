@@ -1,8 +1,8 @@
 .member-hero {
   background: var(--black);
   color: var(--white);
-  /* clear the fixed header + generous breathing room */
-  padding: calc(62px + var(--space-7)) 0 var(--space-8);
+  /* clear the fixed transparent header (62px bar + 24px padding) + breathing room */
+  padding: calc(62px + 24px + var(--space-7)) 0 var(--space-8);
   position: relative;
   overflow: hidden;
 }
@@ -182,6 +182,6 @@
   }
 
   .member-hero {
-    padding: calc(62px + var(--space-5)) 0 var(--space-6);
+    padding: calc(62px + 24px + var(--space-5)) 0 var(--space-6);
   }
 }

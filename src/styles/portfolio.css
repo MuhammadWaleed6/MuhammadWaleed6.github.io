@@ -398,8 +398,8 @@
 @media (max-width: 900px) {
   .hero .hero-inner {
     grid-template-columns: 1fr;
-    /* top padding clears the fixed header; side padding keeps container alignment */
-    padding: calc(62px + var(--space-6)) var(--space-5) var(--space-7);
+  /* top padding clears the fixed transparent header (62px bar + 24px padding); sides keep container alignment */
+  padding: calc(62px + 24px + var(--space-6)) var(--space-5) var(--space-7);
   }
 
   .hero-figure {

@@ -29,7 +29,17 @@
 /* ---------- Transparent-at-top header ---------- */
 .site-nav {
   transition: background 0.3s var(--ease), border-color 0.3s var(--ease),
-    box-shadow 0.3s var(--ease);
+    box-shadow 0.3s var(--ease), padding 0.3s var(--ease);
+}
+
+/* Transparent (top of home/team pages): breathing room around the bar */
+.site-nav.at-top {
+  padding: 12px 0;
+}
+
+/* Scrolled (white) header: compact */
+.site-nav.scrolled {
+  padding: 0 0;
 }
 
 .site-nav.at-top {
