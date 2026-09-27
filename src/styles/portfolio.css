@@ -397,7 +397,8 @@
 @media (max-width: 900px) {
   .hero .hero-inner {
     grid-template-columns: 1fr;
-    padding: var(--space-8) 0;
+    /* top padding clears the fixed header + breathing room */
+    padding: calc(62px + var(--space-6)) 0 var(--space-7);
   }
 
   .hero-figure {
