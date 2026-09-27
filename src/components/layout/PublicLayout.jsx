@@ -44,6 +44,21 @@ export default function PublicLayout() {
     window.scrollTo({ top: 0, behavior: 'auto' })
   }, [location.pathname])
 
+  // Drawer: close on Escape and lock page scroll while it's open.
+  useEffect(() => {
+    if (!menuOpen) return undefined
+    const onKey = (e) => {
+      if (e.key === 'Escape') setMenuOpen(false)
+    }
+    document.addEventListener('keydown', onKey)
+    const prevOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = prevOverflow
+    }
+  }, [menuOpen])
+
   const hasResume = Boolean(settings.resume_url)
 
   function linkClass({ isActive }) {
@@ -65,7 +80,7 @@ export default function PublicLayout() {
         Skip to content
       </a>
 
-      <header className={`site-nav ${scrolled || !isDarkHero ? 'scrolled' : 'at-top'} ${menuOpen ? 'menu-open' : ''}`}>
+      <header className={`site-nav ${scrolled || !isDarkHero ? 'scrolled' : 'at-top'}`}>
         <div className="container nav-inner">
           <Link to="/" className="wordmark" aria-label="Muhammad Walid — home">
             <span className="mark" aria-hidden="true">
@@ -100,9 +115,9 @@ export default function PublicLayout() {
               type="button"
               className="nav-toggle"
               aria-expanded={menuOpen}
-              aria-controls="mobile-menu"
+              aria-controls="mobile-drawer"
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-              onClick={() => setMenuOpen((open) => !open)}
+              onClick={() => setMenuOpen(true)}
             >
               <span />
               <span />
@@ -110,29 +125,58 @@ export default function PublicLayout() {
             </button>
           </div>
         </div>
+      </header>
 
-        <div id="mobile-menu" className={`nav-mobile ${menuOpen ? 'open' : ''}`}>
-          <nav aria-label="Mobile">
-            {NAV_LINKS.map((link) => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                end={link.to === '/'}
-                className={({ isActive }) => sectionLinkClass(link, isActive)}
-              >
-                {link.label}
-              </NavLink>
-            ))}
-          </nav>
+      {/* Mobile drawer: slides in from the left, with overlay */}
+      <div
+        className={`drawer-overlay ${menuOpen ? 'open' : ''}`}
+        onClick={() => setMenuOpen(false)}
+        aria-hidden="true"
+      />
+      <aside
+        id="mobile-drawer"
+        className={`nav-drawer ${menuOpen ? 'open' : ''}`}
+        aria-label="Mobile navigation"
+        aria-hidden={!menuOpen}
+      >
+        <div className="drawer-head">
+          <Link to="/" className="wordmark" onClick={() => setMenuOpen(false)}>
+            <span className="mark" aria-hidden="true">MW</span>
+            {settings.display_name}
+          </Link>
+          <button
+            type="button"
+            className="drawer-close"
+            aria-label="Close menu"
+            onClick={() => setMenuOpen(false)}
+          >
+            <i className="pi pi-times" aria-hidden="true" />
+          </button>
+        </div>
+
+        <nav className="drawer-nav" aria-label="Mobile menu">
+          {NAV_LINKS.map((link) => (
+            <NavLink
+              key={link.to}
+              to={link.to}
+              end={link.to === '/'}
+              className={({ isActive }) => sectionLinkClass(link, isActive)}
+              onClick={() => setMenuOpen(false)}
+            >
+              {link.label}
+              <i className="pi pi-chevron-right" aria-hidden="true" />
+            </NavLink>
+          ))}
+        </nav>
+
+        <div className="drawer-cta">
           {hasResume ? (
-            <div className="mobile-cta">
-              <a className="btn btn-primary" href={settings.resume_url} target="_blank" rel="noreferrer">
-                <i className="pi pi-download" aria-hidden="true" /> Download Resume
-              </a>
-            </div>
+            <a className="btn btn-primary btn-block" href={settings.resume_url} target="_blank" rel="noreferrer">
+              <i className="pi pi-download" aria-hidden="true" /> Download Resume
+            </a>
           ) : null}
         </div>
-      </header>
+      </aside>
 
       <main id="main-content">
         <Outlet />

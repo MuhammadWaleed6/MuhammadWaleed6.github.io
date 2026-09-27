@@ -85,7 +85,7 @@
   gap: var(--space-2);
 }
 
-/* Hamburger */
+/* Hamburger — borderless, clean icon button */
 .nav-toggle {
   display: none;
   flex-direction: column;
@@ -94,10 +94,21 @@
   width: 40px;
   height: 40px;
   padding: 0 9px;
-  border: 1px solid var(--border);
+  border: none;
   border-radius: var(--radius-sm);
-  background: var(--white);
+  background: transparent;
   cursor: pointer;
+}
+
+/* no sticky focus ring after tapping on touch devices;
+   keyboard users still get the outline via :focus-visible */
+.nav-toggle:focus {
+  outline: none;
+}
+
+.nav-toggle:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
 }
 
 .nav-toggle span {
@@ -121,35 +132,129 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* Mobile menu */
-.nav-mobile {
-  display: none;
-  border-top: 1px solid var(--border);
+/* ---------- Mobile drawer: slides in from the left ---------- */
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 17, 17, 0.55);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease);
+  z-index: 290;
+}
+
+.drawer-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.nav-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: min(320px, 84vw);
   background: var(--white);
-  padding: var(--space-3) var(--space-5) var(--space-5);
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 20px 24px;
+  transform: translateX(-105%);
+  visibility: hidden;
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 0.32s;
 }
 
-.nav-mobile.open {
-  display: block;
+.nav-drawer.open {
+  transform: translateX(0);
+  visibility: visible;
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s;
 }
 
-.nav-mobile a {
-  display: block;
-  padding: 11px 4px;
-  font-size: 14.5px;
-  font-weight: 700;
-  color: var(--black);
+.nav-drawer .drawer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0 16px;
   border-bottom: 1px solid var(--border);
+  margin-bottom: 8px;
 }
 
-.nav-mobile a.active {
+.nav-drawer .wordmark {
+  font-weight: 900;
+  font-size: 15px;
+  color: var(--black);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.nav-drawer .wordmark .mark {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  background: var(--red);
+  color: var(--white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10.5px;
+  font-weight: 900;
+}
+
+.nav-drawer .drawer-close {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 8px;
+  background: var(--bg-soft);
+  color: var(--black);
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s var(--ease), color 0.15s var(--ease);
+}
+
+.nav-drawer .drawer-close:hover {
+  background: var(--red-soft);
   color: var(--red);
 }
 
-.nav-mobile .mobile-cta {
-  margin-top: var(--space-4);
-  display: grid;
-  gap: var(--space-2);
+.nav-drawer .drawer-nav {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.nav-drawer .drawer-nav a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 4px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--charcoal);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-drawer .drawer-nav a .pi {
+  font-size: 11px;
+  color: var(--muted-2);
+}
+
+.nav-drawer .drawer-nav a.active {
+  color: var(--red);
+}
+
+.nav-drawer .drawer-nav a.active .pi {
+  color: var(--red);
+}
+
+.nav-drawer .drawer-cta {
+  margin-top: auto;
 }
 
 @media (max-width: 860px) {

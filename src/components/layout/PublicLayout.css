@@ -15,11 +15,6 @@
   left: 0;
 }
 
-/* keep mobile menu visible when open even though default is hidden */
-.nav-mobile.open {
-  display: block;
-}
-
 /* ---------- Transparent-at-top header on dark-hero pages ---------- */
 /* (home + team detail pages: hero background shows through the header) */
 .public-shell.is-dark-hero main {
@@ -81,7 +76,6 @@
 /* hamburger stays dark — visible on white when menu bar area is over content */
 .site-nav.at-top .nav-toggle {
   background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.25);
 }
 
 .site-nav.at-top .nav-toggle span {
@@ -94,21 +88,6 @@
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
   box-shadow: 0 2px 12px rgba(17, 17, 17, 0.04);
-}
-
-/* When the mobile menu is open force the solid look for readability */
-.site-nav.menu-open,
-.site-nav.at-top.menu-open {
-  background: rgba(255, 255, 255, 0.98);
-}
-
-.site-nav.at-top.menu-open .nav-links a,
-.site-nav.at-top.menu-open .wordmark {
-  color: var(--black);
-}
-
-.site-nav.menu-open .nav-toggle span {
-  background: var(--black);
 }
 
 /* ---------- Floating back-to-top ---------- */
