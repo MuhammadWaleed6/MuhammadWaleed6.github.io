@@ -237,8 +237,8 @@
   grid-template-columns: 1.25fr 0.75fr;
   gap: var(--space-7);
   align-items: center;
-  /* keep the container's horizontal padding (24px) — never override it to 0 */
-  padding: var(--space-9) var(--space-5);
+  /* desktop: extra breathing room top/bottom, container side padding preserved */
+  padding: 145px var(--space-5) 100px;
 }
 
 .hero .hero-label {
