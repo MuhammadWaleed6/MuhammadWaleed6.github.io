@@ -7,11 +7,16 @@ import { useEffect, useState } from 'react'
  * with a plain useRef the observer attached too early and the
  * element never became visible.
  * Respects prefers-reduced-motion (marks visible immediately).
+ *
+ * threshold defaults to 0: with stacked mobile/tablet layouts a whole
+ * section grid can be taller than the viewport, so its intersection
+ * ratio can never reach a positive threshold and it would stay hidden
+ * (opacity: 0) forever. 0 = reveal as soon as any part enters the view.
  */
 export function useReveal(options = {}) {
   const [node, setNode] = useState(null)
   const [visible, setVisible] = useState(false)
-  const { threshold = 0.12, once = true } = options
+  const { threshold = 0, once = true } = options
 
   useEffect(() => {
     if (!node) return undefined
