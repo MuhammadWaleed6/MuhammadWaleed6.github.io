@@ -24,6 +24,7 @@ export const DEFAULT_SETTINGS = {
   availability_text: 'Available for new projects',
   availability_is_open: true,
   contact_email: '',
+  phone_number: '',
   github_url: '',
   linkedin_url: '',
   twitter_url: '',

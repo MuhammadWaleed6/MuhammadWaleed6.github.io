@@ -249,7 +249,14 @@ export default function PublicLayout() {
                     </a>
                   </li>
                 ) : null}
-                {!settings.github_url && !settings.linkedin_url && !settings.contact_email ? (
+                {settings.phone_number ? (
+                  <li>
+                    <a href={`tel:${settings.phone_number.replace(/[^+\d]/g, '')}`}>
+                      <i className="pi pi-phone" aria-hidden="true" /> {settings.phone_number}
+                    </a>
+                  </li>
+                ) : null}
+                {!settings.github_url && !settings.linkedin_url && !settings.contact_email && !settings.phone_number ? (
                   <li>
                     <span className="text-muted">Add links in the dashboard</span>
                   </li>

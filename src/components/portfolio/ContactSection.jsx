@@ -86,6 +86,15 @@ export default function ContactSection() {
                 </a>
               </div>
             ) : null}
+            {settings.phone_number ? (
+              <div className="c-line">
+                <i className="pi pi-phone" aria-hidden="true" />
+                <a href={`tel:${settings.phone_number.replace(/[^+\d]/g, '')}`}>
+                  {settings.phone_number}
+                  <span className="sub">Phone / WhatsApp</span>
+                </a>
+              </div>
+            ) : null}
             <div className="c-line">
               <i className="pi pi-map-marker" aria-hidden="true" />
               <span>

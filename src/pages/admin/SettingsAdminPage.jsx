@@ -120,6 +120,18 @@ export default function SettingsAdminPage() {
               </div>
 
               <div className="field">
+                <label htmlFor="sf-phone">Public phone number</label>
+                <input
+                  id="sf-phone"
+                  type="text"
+                  value={form.phone_number || ''}
+                  onChange={(e) => setForm((prev) => ({ ...prev, phone_number: e.target.value }))}
+                  placeholder="+92 300 1234567"
+                />
+                <span className="hint">Shown in the contact section and footer as a tap-to-call link.</span>
+              </div>
+
+              <div className="field">
                 <label htmlFor="sf-footer">Footer text</label>
                 <input
                   id="sf-footer"
