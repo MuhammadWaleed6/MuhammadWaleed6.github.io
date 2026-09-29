@@ -20,7 +20,7 @@ import './ProjectsAdminPage.css'
 const EMPTY = { name: '', category: 'Frontend', icon: '', proficiency_label: '', is_visible: true, sort_order: 0 }
 
 export default function SkillsAdminPage() {
-  useDocumentMeta('Skills — Admin')
+  useDocumentMeta({ title: 'Skills — Admin', noindex: true })
   const toast = useRef(null)
   const [skills, setSkills] = useState([])
   const [loading, setLoading] = useState(true)

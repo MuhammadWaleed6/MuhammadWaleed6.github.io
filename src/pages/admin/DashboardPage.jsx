@@ -13,7 +13,7 @@ import EmptyState from '../../components/common/EmptyState'
 import SetupNotice from '../../components/common/SetupNotice'
 
 export default function DashboardPage() {
-  useDocumentMeta('Dashboard — Admin')
+  useDocumentMeta({ title: 'Dashboard — Admin', noindex: true })
   const [stats, setStats] = useState(null)
   const [recentProjects, setRecentProjects] = useState([])
   const [recentMessages, setRecentMessages] = useState([])
@@ -71,11 +71,11 @@ export default function DashboardPage() {
   }
 
   const statCards = [
-    { label: 'Total projects', value: stats.projectsTotal, icon: 'pi-briefcase', to: '/admin/projects' },
-    { label: 'Published', value: stats.projectsPublished, icon: 'pi-check-circle', to: '/admin/projects' },
-    { label: 'Drafts', value: stats.projectsDraft, icon: 'pi-pencil', to: '/admin/projects' },
-    { label: 'Unread messages', value: stats.messagesUnread, icon: 'pi-envelope', to: '/admin/messages' },
-    { label: 'Skills', value: stats.skillsTotal, icon: 'pi-tags', to: '/admin/skills' },
+    { label: 'Total projects', value: stats.projectsTotal, icon: 'pi-briefcase', to: `${__ADMIN_BASE__}/projects` },
+    { label: 'Published', value: stats.projectsPublished, icon: 'pi-check-circle', to: `${__ADMIN_BASE__}/projects` },
+    { label: 'Drafts', value: stats.projectsDraft, icon: 'pi-pencil', to: `${__ADMIN_BASE__}/projects` },
+    { label: 'Unread messages', value: stats.messagesUnread, icon: 'pi-envelope', to: `${__ADMIN_BASE__}/messages` },
+    { label: 'Skills', value: stats.skillsTotal, icon: 'pi-tags', to: `${__ADMIN_BASE__}/skills` },
   ]
 
   return (
@@ -84,10 +84,10 @@ export default function DashboardPage() {
         title="Dashboard"
         actions={
           <>
-            <Link to="/admin/projects/new" className="btn btn-primary btn-sm">
+            <Link to={`${__ADMIN_BASE__}/projects/new`} className="btn btn-primary btn-sm">
               <i className="pi pi-plus" aria-hidden="true" /> New project
             </Link>
-            <Link to="/admin/messages" className="btn btn-outline btn-sm">
+            <Link to={`${__ADMIN_BASE__}/messages`} className="btn btn-outline btn-sm">
               <i className="pi pi-envelope" aria-hidden="true" /> Inbox
             </Link>
           </>
@@ -112,7 +112,7 @@ export default function DashboardPage() {
         <div className="admin-panel">
           <div className="panel-head">
             <h2>Recent projects</h2>
-            <Link to="/admin/projects" className="btn btn-ghost btn-sm">
+            <Link to={`${__ADMIN_BASE__}/projects`} className="btn btn-ghost btn-sm">
               View all <i className="pi pi-arrow-right" aria-hidden="true" />
             </Link>
           </div>
@@ -124,7 +124,7 @@ export default function DashboardPage() {
                   title="No projects yet"
                   message="Create your first project to showcase your work."
                   action={
-                    <Link to="/admin/projects/new" className="btn btn-primary btn-sm">
+                    <Link to={`${__ADMIN_BASE__}/projects/new`} className="btn btn-primary btn-sm">
                       <i className="pi pi-plus" aria-hidden="true" /> Add project
                     </Link>
                   }
@@ -142,7 +142,7 @@ export default function DashboardPage() {
                       {p.category} · updated {timeAgo(p.updated_at)}
                     </div>
                   </div>
-                  <Link to={`/admin/projects/${p.id}`} className="icon-btn" aria-label={`Edit ${p.title}`}>
+                  <Link to={`${__ADMIN_BASE__}/projects/${p.id}`} className="icon-btn" aria-label={`Edit ${p.title}`}>
                     <i className="pi pi-pencil" aria-hidden="true" />
                   </Link>
                 </div>
@@ -154,7 +154,7 @@ export default function DashboardPage() {
         <div className="admin-panel">
           <div className="panel-head">
             <h2>Recent messages</h2>
-            <Link to="/admin/messages" className="btn btn-ghost btn-sm">
+            <Link to={`${__ADMIN_BASE__}/messages`} className="btn btn-ghost btn-sm">
               View all <i className="pi pi-arrow-right" aria-hidden="true" />
             </Link>
           </div>
@@ -177,7 +177,7 @@ export default function DashboardPage() {
                       {m.name} · {formatDateTime(m.created_at)}
                     </div>
                   </div>
-                  <Link to="/admin/messages" className="icon-btn" aria-label="Open inbox">
+                  <Link to={`${__ADMIN_BASE__}/messages`} className="icon-btn" aria-label="Open inbox">
                     <i className="pi pi-arrow-right" aria-hidden="true" />
                   </Link>
                 </div>
@@ -195,7 +195,7 @@ export function PageHeader({ title, crumbs = [], actions = null }) {
     <div className="admin-page-head">
       <div>
         <div className="crumbs">
-          <Link to="/admin">Admin</Link>
+          <Link to={__ADMIN_BASE__}>Admin</Link>
           {crumbs.map((c) => (
             <span key={c} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
               <i className="pi pi-chevron-right" aria-hidden="true" /> {c}

@@ -8,24 +8,24 @@ import { getDashboardStats } from '../../services/contentService'
 const NAV_SECTIONS = [
   {
     label: 'Overview',
-    items: [{ to: '/admin', label: 'Dashboard', icon: 'pi-home', end: true }],
+    items: [{ to: __ADMIN_BASE__, label: 'Dashboard', icon: 'pi-home', end: true }],
   },
   {
     label: 'Content',
     items: [
-      { to: '/admin/projects', label: 'Projects', icon: 'pi-briefcase' },
-      { to: '/admin/skills', label: 'Skills', icon: 'pi-tags' },
-      { to: '/admin/services', label: 'Services', icon: 'pi-star' },
-      { to: '/admin/timeline', label: 'Experience & Education', icon: 'pi-history' },
-      { to: '/admin/team', label: 'Team', icon: 'pi-users' },
+      { to: `${__ADMIN_BASE__}/projects`, label: 'Projects', icon: 'pi-briefcase' },
+      { to: `${__ADMIN_BASE__}/skills`, label: 'Skills', icon: 'pi-tags' },
+      { to: `${__ADMIN_BASE__}/services`, label: 'Services', icon: 'pi-star' },
+      { to: `${__ADMIN_BASE__}/timeline`, label: 'Experience & Education', icon: 'pi-history' },
+      { to: `${__ADMIN_BASE__}/team`, label: 'Team', icon: 'pi-users' },
     ],
   },
   {
     label: 'Site',
     items: [
-      { to: '/admin/profile', label: 'Profile', icon: 'pi-user' },
-      { to: '/admin/settings', label: 'Site Settings', icon: 'pi-cog' },
-      { to: '/admin/messages', label: 'Messages', icon: 'pi-envelope', badge: 'unread' },
+      { to: `${__ADMIN_BASE__}/profile`, label: 'Profile', icon: 'pi-user' },
+      { to: `${__ADMIN_BASE__}/settings`, label: 'Site Settings', icon: 'pi-cog' },
+      { to: `${__ADMIN_BASE__}/messages`, label: 'Messages', icon: 'pi-envelope', badge: 'unread' },
     ],
   },
 ]

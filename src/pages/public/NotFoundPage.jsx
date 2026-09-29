@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { useDocumentMeta } from '../../hooks/useDocumentMeta'
 
 export default function NotFoundPage() {
-  useDocumentMeta('Page not found')
+  useDocumentMeta({ title: 'Page not found', noindex: true })
 
   return (
     <div className="notfound">

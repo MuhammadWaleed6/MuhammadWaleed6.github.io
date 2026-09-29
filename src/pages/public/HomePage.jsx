@@ -28,7 +28,11 @@ export default function HomePage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
-  useDocumentMeta(settings.site_title, settings.meta_description)
+  useDocumentMeta({
+    title: settings.site_title,
+    description: settings.meta_description,
+    canonicalPath: '/',
+  })
 
   useEffect(() => {
     let cancelled = false

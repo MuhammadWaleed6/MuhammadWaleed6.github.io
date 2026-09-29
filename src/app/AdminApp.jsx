@@ -13,6 +13,8 @@ import MessagesAdminPage from '../pages/admin/MessagesAdminPage'
 import ProfileAdminPage from '../pages/admin/ProfileAdminPage'
 import SettingsAdminPage from '../pages/admin/SettingsAdminPage'
 
+const BASE = __ADMIN_BASE__
+
 export default function AdminApp() {
   return (
     <Routes>
@@ -36,7 +38,7 @@ export default function AdminApp() {
         </Route>
       </Route>
 
-      <Route path="*" element={<Navigate to="/admin" replace />} />
+      <Route path="*" element={<Navigate to={BASE} replace />} />
     </Routes>
   )
 }

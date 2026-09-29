@@ -45,7 +45,10 @@ export default function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Route>
 
-        <Route path="/admin/*" element={<AdminApp />} />
+        {/* The admin dashboard lives on an unlisted URL. There is deliberately
+            no link, no redirect and no mention of it in the public bundle —
+            unknown paths fall through to the 404 page. */}
+        <Route path={`${__ADMIN_BASE__}/*`} element={<AdminApp />} />
       </Routes>
     </Suspense>
   )

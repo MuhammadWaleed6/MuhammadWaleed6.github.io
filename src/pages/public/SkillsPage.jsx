@@ -13,7 +13,12 @@ export default function SkillsPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
 
-  useDocumentMeta(`Skills — ${settings.display_name}`, settings.meta_description)
+  useDocumentMeta({
+    title: `Skills — ${settings.display_name}`,
+    description:
+      'The technologies and tools Muhammad Walid works with — including HTML, CSS, JavaScript, React and Node.js — for building modern websites and web applications.',
+    canonicalPath: '/skills',
+  })
 
   useEffect(() => {
     let cancelled = false
@@ -39,6 +44,7 @@ export default function SkillsPage() {
   return (
     <section className="section">
       <div className="container">
+        <h1 className="sr-only">Skills — Muhammad Walid</h1>
         <SectionHeading
           label="Skills"
           title="Technologies & tools"

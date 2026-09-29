@@ -42,7 +42,7 @@ export default function ProjectEditorPage() {
   const [errors, setErrors] = useState({})
   const [galleryText, setGalleryText] = useState('')
 
-  useDocumentMeta(isEdit ? 'Edit project — Admin' : 'New project — Admin')
+  useDocumentMeta({ title: isEdit ? 'Edit project — Admin' : 'New project — Admin', noindex: true })
 
   useEffect(() => {
     if (!isEdit) return
@@ -56,10 +56,10 @@ export default function ProjectEditorPage() {
           setOriginal(found)
           setGalleryText(listToText(found.gallery_images))
         } else {
-          navigate('/admin/projects', { replace: true })
+          navigate(`${__ADMIN_BASE__}/projects`, { replace: true })
         }
       })
-      .catch(() => navigate('/admin/projects', { replace: true }))
+      .catch(() => navigate(`${__ADMIN_BASE__}/projects`, { replace: true }))
       .finally(() => {
         if (!cancelled) setLoading(false)
       })
@@ -129,7 +129,7 @@ export default function ProjectEditorPage() {
         saved.is_published = true
       }
 
-      navigate(`/admin/projects/${saved.id}`, { replace: !isEdit })
+      navigate(`${__ADMIN_BASE__}/projects/${saved.id}`, { replace: !isEdit })
     } catch (err) {
       setErrors({ form: err.message || 'Could not save the project.' })
     } finally {

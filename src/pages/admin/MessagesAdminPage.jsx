@@ -16,7 +16,7 @@ import { PageHeader } from './DashboardPage'
 import './ProjectsAdminPage.css'
 
 export default function MessagesAdminPage() {
-  useDocumentMeta('Messages — Admin')
+  useDocumentMeta({ title: 'Messages — Admin', noindex: true })
   const toast = useRef(null)
   const [messages, setMessages] = useState([])
   const [loading, setLoading] = useState(true)

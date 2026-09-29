@@ -13,7 +13,12 @@ export default function ServicesPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
 
-  useDocumentMeta(`Services — ${settings.display_name}`, settings.meta_description)
+  useDocumentMeta({
+    title: `Services — ${settings.display_name}`,
+    description:
+      'Web development services by Muhammad Walid — from a first website to modern web applications, with focused, practical delivery.',
+    canonicalPath: '/services',
+  })
 
   useEffect(() => {
     let cancelled = false
@@ -39,6 +44,7 @@ export default function ServicesPage() {
   return (
     <section className="section">
       <div className="container">
+        <h1 className="sr-only">Services — Muhammad Walid</h1>
         <SectionHeading
           label="Services"
           title="What I can do for you"

@@ -15,10 +15,13 @@ export default function TeamMemberDetailPage() {
   const [notFound, setNotFound] = useState(false)
   const [error, setError] = useState('')
 
-  useDocumentMeta(
-    loading ? 'Loading…' : member ? `${member.name} — Team` : 'Member not found',
-    member?.bio?.slice(0, 150) || settings.meta_description
-  )
+  useDocumentMeta({
+    title: loading ? 'Loading…' : member ? `${member.name} — Team` : 'Member not found',
+    description: member?.bio?.slice(0, 150) || settings.meta_description,
+    canonicalPath: `/team/${slug}`,
+    image: member?.photo_url || undefined,
+    noindex: !member,
+  })
 
   useEffect(() => {
     let cancelled = false

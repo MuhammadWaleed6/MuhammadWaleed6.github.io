@@ -17,7 +17,7 @@ export default function ProtectedAdminRoute() {
   }
 
   if (!session) {
-    return <Navigate to="/admin/login" state={{ from: location }} replace />
+    return <Navigate to={`${__ADMIN_BASE__}/login`} state={{ from: location }} replace />
   }
 
   if (!isAdmin) {

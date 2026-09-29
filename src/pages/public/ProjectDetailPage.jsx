@@ -13,10 +13,17 @@ export default function ProjectDetailPage() {
   const [notFound, setNotFound] = useState(false)
   const [error, setError] = useState('')
 
-  useDocumentMeta(
-    loading ? 'Loading project…' : project ? `${project.title} — ${settings.display_name}` : 'Project not found',
-    project?.short_description || settings.meta_description
-  )
+  useDocumentMeta({
+    title: loading
+      ? 'Loading project…'
+      : project
+        ? `${project.title} — ${settings.display_name}`
+        : 'Project not found',
+    description: project?.short_description || settings.meta_description,
+    canonicalPath: `/projects/${slug}`,
+    image: project?.cover_image_url || undefined,
+    noindex: !project,
+  })
 
   useEffect(() => {
     let cancelled = false
@@ -109,7 +116,7 @@ export default function ProjectDetailPage() {
         <div className="container project-detail">
           <div className="detail-media">
             {project.cover_image_url ? (
-              <img src={project.cover_image_url} alt={`${project.title} cover`} />
+              <img src={project.cover_image_url} alt={`${project.title} cover`} loading="lazy" />
             ) : (
               <div className="cover-fallback-lg">
                 <i className="pi pi-images" aria-hidden="true" />

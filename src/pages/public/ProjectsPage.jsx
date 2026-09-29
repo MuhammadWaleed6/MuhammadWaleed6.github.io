@@ -16,7 +16,12 @@ export default function ProjectsPage() {
   const [category, setCategory] = useState('All')
   const [query, setQuery] = useState('')
 
-  useDocumentMeta(`Projects — ${settings.display_name}`, settings.meta_description)
+  useDocumentMeta({
+    title: `Projects — ${settings.display_name}`,
+    description:
+      'Browse real projects built by Muhammad Walid — websites and web applications taken end-to-end, from the first idea to a deployed product.',
+    canonicalPath: '/projects',
+  })
 
   useEffect(() => {
     let cancelled = false
@@ -65,6 +70,7 @@ export default function ProjectsPage() {
   return (
     <section className="section">
       <div className="container">
+        <h1 className="sr-only">Projects — Muhammad Walid</h1>
         <SectionHeading
           label="Projects"
           title="Work I'm proud of"

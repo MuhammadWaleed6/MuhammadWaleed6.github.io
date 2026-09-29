@@ -51,7 +51,7 @@ function ListEditor({ label, hint, value, onChange }) {
 }
 
 export default function TeamAdminPage() {
-  useDocumentMeta('Team — Admin')
+  useDocumentMeta({ title: 'Team — Admin', noindex: true })
   const toast = useRef(null)
   const [members, setMembers] = useState([])
   const [loading, setLoading] = useState(true)

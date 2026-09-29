@@ -12,7 +12,12 @@ export default function TeamPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
 
-  useDocumentMeta(`Team — ${settings.display_name}`, settings.meta_description)
+  useDocumentMeta({
+    title: `Team — ${settings.display_name}`,
+    description:
+      'Meet the trusted collaborators Muhammad Walid works with to design, build and ship bigger web projects.',
+    canonicalPath: '/team',
+  })
 
   useEffect(() => {
     let cancelled = false
@@ -38,6 +43,7 @@ export default function TeamPage() {
   return (
     <section className="section">
       <div className="container">
+        <h1 className="sr-only">Team — Muhammad Walid</h1>
         <SectionHeading
           label="The Team"
           title="People I build with"

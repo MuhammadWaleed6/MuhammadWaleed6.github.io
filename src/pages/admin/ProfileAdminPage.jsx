@@ -19,7 +19,7 @@ const TEXT_FIELDS = [
 ]
 
 export default function ProfileAdminPage() {
-  useDocumentMeta('Profile — Admin')
+  useDocumentMeta({ title: 'Profile — Admin', noindex: true })
   const toast = useRef(null)
   const { settings, refresh } = useSiteSettings()
   const [form, setForm] = useState(settings)

@@ -269,9 +269,6 @@ export default function PublicLayout() {
             >
               <i className="pi pi-arrow-up" aria-hidden="true" /> Back to top
             </button>
-            <Link to="/admin" className="admin-link" title="Admin login">
-              <i className="pi pi-lock" aria-hidden="true" /> Admin
-            </Link>
           </div>
         </div>
       </footer>

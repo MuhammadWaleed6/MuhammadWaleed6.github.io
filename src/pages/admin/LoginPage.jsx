@@ -4,7 +4,7 @@ import { useAuth } from '../../hooks/useAuth'
 import { useDocumentMeta } from '../../hooks/useDocumentMeta'
 
 export default function LoginPage() {
-  useDocumentMeta('Admin login')
+  useDocumentMeta({ title: 'Admin login', noindex: true })
   const { signIn, sendPasswordReset, isAdmin } = useAuth()
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
@@ -27,7 +27,7 @@ export default function LoginPage() {
       )
       return
     }
-    navigate('/admin', { replace: true })
+    navigate(__ADMIN_BASE__, { replace: true })
   }
 
   async function onReset(e) {
@@ -54,7 +54,7 @@ export default function LoginPage() {
           <div className="auth-mark">MW</div>
           <h1>You're signed in</h1>
           <p className="auth-sub">Redirecting to the dashboard…</p>
-          <Link to="/admin" className="btn btn-primary btn-block">
+          <Link to={__ADMIN_BASE__} className="btn btn-primary btn-block">
             Go to dashboard
           </Link>
         </div>

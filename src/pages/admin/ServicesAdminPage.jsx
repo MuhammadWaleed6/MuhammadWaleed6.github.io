@@ -19,7 +19,7 @@ import './ProjectsAdminPage.css'
 const EMPTY = { title: '', description: '', icon: '', starting_price: '', is_visible: true, sort_order: 0 }
 
 export default function ServicesAdminPage() {
-  useDocumentMeta('Services — Admin')
+  useDocumentMeta({ title: 'Services — Admin', noindex: true })
   const toast = useRef(null)
   const [services, setServices] = useState([])
   const [loading, setLoading] = useState(true)

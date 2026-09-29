@@ -95,7 +95,7 @@ export function AuthProvider({ children }) {
       return { error: new Error('Supabase is not configured.') }
     }
     const { error } = await supabase.auth.resetPasswordForEmail(String(email || '').trim(), {
-      redirectTo: `${window.location.origin}${window.location.pathname}#/admin`,
+      redirectTo: `${window.location.origin}${__ADMIN_BASE__}`,
     })
     return { error: error || null }
   }, [])

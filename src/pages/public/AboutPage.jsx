@@ -13,7 +13,12 @@ export default function AboutPage() {
   const [loading, setLoading] = useState(true)
   const [dbError, setDbError] = useState(false)
 
-  useDocumentMeta(`About — ${settings.display_name}`, settings.meta_description)
+  useDocumentMeta({
+    title: `About — ${settings.display_name}`,
+    description:
+      'Learn about Muhammad Walid — a web developer with a business & IT background, four years of hands-on web experience, and a practical, business-aware approach to building products.',
+    canonicalPath: '/about',
+  })
 
   useEffect(() => {
     let cancelled = false
@@ -46,6 +51,7 @@ export default function AboutPage() {
     <>
       <section className="section">
         <div className="container">
+          <h1 className="sr-only">About — Muhammad Walid</h1>
           <AboutSection settings={settings} />
         </div>
       </section>

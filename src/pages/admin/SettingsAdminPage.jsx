@@ -17,7 +17,7 @@ const URL_FIELDS = [
 ]
 
 export default function SettingsAdminPage() {
-  useDocumentMeta('Site Settings — Admin')
+  useDocumentMeta({ title: 'Site Settings — Admin', noindex: true })
   const toast = useRef(null)
   const { settings, refresh } = useSiteSettings()
   const [form, setForm] = useState(settings)

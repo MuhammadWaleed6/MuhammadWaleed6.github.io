@@ -15,7 +15,7 @@ import { PageHeader } from './DashboardPage'
 import './DashboardPage.css'
 
 export default function ProjectsAdminPage() {
-  useDocumentMeta('Projects — Admin')
+  useDocumentMeta({ title: 'Projects — Admin', noindex: true })
   const toast = useRef(null)
   const [projects, setProjects] = useState([])
   const [loading, setLoading] = useState(true)
@@ -99,7 +99,7 @@ export default function ProjectsAdminPage() {
         title="Projects"
         crumbs={['Content']}
         actions={
-          <Link to="/admin/projects/new" className="btn btn-primary btn-sm">
+          <Link to={`${__ADMIN_BASE__}/projects/new`} className="btn btn-primary btn-sm">
             <i className="pi pi-plus" aria-hidden="true" /> New project
           </Link>
         }
@@ -113,7 +113,7 @@ export default function ProjectsAdminPage() {
           title="No projects yet"
           message="Add your first project to showcase your work on the portfolio."
           action={
-            <Link to="/admin/projects/new" className="btn btn-primary btn-sm">
+            <Link to={`${__ADMIN_BASE__}/projects/new`} className="btn btn-primary btn-sm">
               <i className="pi pi-plus" aria-hidden="true" /> Add your first project
             </Link>
           }
@@ -176,7 +176,7 @@ export default function ProjectsAdminPage() {
                       {formatDate(p.updated_at)}
                     </td>
                     <td style={{ whiteSpace: 'nowrap', textAlign: 'right' }}>
-                      <Link to={`/admin/projects/${p.id}`} className="icon-btn" aria-label={`Edit ${p.title}`}>
+                      <Link to={`${__ADMIN_BASE__}/projects/${p.id}`} className="icon-btn" aria-label={`Edit ${p.title}`}>
                         <i className="pi pi-pencil" aria-hidden="true" />
                       </Link>
                       <button

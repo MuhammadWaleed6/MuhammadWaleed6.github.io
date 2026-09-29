@@ -30,7 +30,7 @@ const EMPTY = {
 }
 
 export default function TimelineAdminPage() {
-  useDocumentMeta('Experience & Education — Admin')
+  useDocumentMeta({ title: 'Experience & Education — Admin', noindex: true })
   const toast = useRef(null)
   const [items, setItems] = useState([])
   const [loading, setLoading] = useState(true)
