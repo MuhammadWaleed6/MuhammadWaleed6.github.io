@@ -12,6 +12,7 @@ const NAV_LINKS = [
   { to: '/services', label: 'Services', section: 'home-services' },
   { to: '/team', label: 'Team', section: 'home-team' },
   { to: '/contact', label: 'Contact', section: 'contact' },
+  { to: '/blog', label: 'Blog' },
 ]
 
 export default function PublicLayout() {

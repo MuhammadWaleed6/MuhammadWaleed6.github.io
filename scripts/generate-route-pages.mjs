@@ -58,6 +58,12 @@ const ROUTES = [
     description:
       'Get in touch with Muhammad Walid — send a message about your project, question or idea, and expect a reply within a day or two.',
   },
+  {
+    path: '/blog',
+    title: 'Blog — Muhammad Walid',
+    description:
+      'Articles by Muhammad Walid on web development — React, responsive design, Supabase and lessons learned building real websites and client projects.',
+  },
 ]
 
 const esc = (s) =>

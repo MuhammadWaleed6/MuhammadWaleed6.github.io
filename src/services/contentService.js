@@ -400,3 +400,84 @@ export async function getDashboardStats() {
     timelineTotal: timeline.length,
   }
 }
+
+/* ------------------------------------------------------------------
+ * BLOG POSTS
+ * ------------------------------------------------------------------ */
+export async function getPublishedBlogPosts() {
+  const { data, error } = await client()
+    .from('blog_posts')
+    .select('*')
+    .eq('is_published', true)
+    .order('sort_order', { ascending: true })
+    .order('created_at', { ascending: false })
+  mapError(error)
+  return data || []
+}
+
+export async function getAllBlogPosts() {
+  const { data, error } = await client()
+    .from('blog_posts')
+    .select('*')
+    .order('sort_order', { ascending: true })
+    .order('created_at', { ascending: false })
+  mapError(error)
+  return data || []
+}
+
+export async function getBlogPostBySlug(slug) {
+  const { data, error } = await client()
+    .from('blog_posts')
+    .select('*')
+    .eq('slug', slug)
+    .eq('is_published', true)
+    .maybeSingle()
+  mapError(error)
+  return data || null
+}
+
+/** Adjacent published posts for prev/next navigation (ordered by sort_order). */
+export async function getBlogNeighbors(sortOrder) {
+  const [prevRes, nextRes] = await Promise.all([
+    client()
+      .from('blog_posts')
+      .select('title, slug')
+      .eq('is_published', true)
+      .lt('sort_order', sortOrder)
+      .order('sort_order', { ascending: false })
+      .limit(1),
+    client()
+      .from('blog_posts')
+      .select('title, slug')
+      .eq('is_published', true)
+      .gt('sort_order', sortOrder)
+      .order('sort_order', { ascending: true })
+      .limit(1),
+  ])
+  mapError(prevRes.error)
+  mapError(nextRes.error)
+  return { prev: prevRes.data?.[0] || null, next: nextRes.data?.[0] || null }
+}
+
+export async function createBlogPost(values) {
+  const { data, error } = await client().from('blog_posts').insert(values).select().single()
+  mapError(error)
+  return data
+}
+
+export async function updateBlogPost(id, patch) {
+  const { data, error } = await client()
+    .from('blog_posts')
+    .update({ ...patch, updated_at: new Date().toISOString() })
+    .eq('id', id)
+    .select()
+    .single()
+  mapError(error)
+  return data
+}
+
+export async function deleteBlogPost(id) {
+  const { error } = await client().from('blog_posts').delete().eq('id', id)
+  mapError(error)
+  return true
+}

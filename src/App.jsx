@@ -10,6 +10,8 @@ import ServicesPage from './pages/public/ServicesPage'
 import ContactPage from './pages/public/ContactPage'
 import TeamMemberDetailPage from './pages/public/TeamMemberDetailPage'
 import TeamPage from './pages/public/TeamPage'
+import BlogPage from './pages/public/BlogPage'
+import BlogPostPage from './pages/public/BlogPostPage'
 import NotFoundPage from './pages/public/NotFoundPage'
 import PageLoading from './components/common/PageLoading'
 
@@ -42,6 +44,8 @@ export default function App() {
           <Route path="/team" element={<TeamPage />} />
           <Route path="/team/:slug" element={<TeamMemberDetailPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
 

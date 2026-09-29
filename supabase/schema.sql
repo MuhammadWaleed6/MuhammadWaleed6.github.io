@@ -445,3 +445,41 @@ from (
     )
 ) as v(name, slug, role, bio, skills, achievements, projects, sort_order)
 where not exists (select 1 from public.team_members where slug = v.slug);
+
+/* ============================================================
+   BLOG POSTS
+   ============================================================ */
+create table if not exists public.blog_posts (
+  id uuid primary key default gen_random_uuid(),
+  title text not null,
+  slug text not null unique,
+  excerpt text not null default '',
+  content text not null default '',
+  cover_image_url text,
+  tags text[] not null default '{}',
+  reading_minutes integer not null default 3,
+  is_published boolean not null default false,
+  is_visible boolean not null default true,
+  sort_order integer not null default 0,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+alter table public.blog_posts enable row level security;
+
+-- Public: published posts only
+drop policy if exists "blog_public_read" on public.blog_posts;
+create policy "blog_public_read"
+  on public.blog_posts for select
+  using (is_published = true);
+
+-- Admins: allowlisted admins manage everything
+drop policy if exists "blog_admin_all" on public.blog_posts;
+create policy "blog_admin_all"
+  on public.blog_posts for all
+  using (public.is_admin())
+  with check (public.is_admin());
+
+create index if not exists blog_posts_published_sort_idx
+  on public.blog_posts (sort_order, created_at desc)
+  where is_published = true;

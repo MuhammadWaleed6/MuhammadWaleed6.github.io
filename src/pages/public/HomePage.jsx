@@ -18,6 +18,7 @@ import SkillsGrid from '../../components/portfolio/SkillsGrid'
 import AboutSection from '../../components/portfolio/AboutSection'
 import ContactSection from '../../components/portfolio/ContactSection'
 import TeamMemberCard from '../../components/portfolio/TeamMemberCard'
+import BlogTeaser from '../../components/portfolio/BlogTeaser'
 import './HomePage.css'
 
 // Order in which home sections render (between the hero and the contact
@@ -101,6 +102,7 @@ export default function HomePage() {
       <HeroSection settings={settings} />
       {orderedKeys.map((key) => sections[key])}
       <ContactSection />
+      <BlogTeaser />
     </>
   )
 }

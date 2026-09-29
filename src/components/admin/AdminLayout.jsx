@@ -18,6 +18,7 @@ const NAV_SECTIONS = [
       { to: `${__ADMIN_BASE__}/services`, label: 'Services', icon: 'pi-star' },
       { to: `${__ADMIN_BASE__}/timeline`, label: 'Experience & Education', icon: 'pi-history' },
       { to: `${__ADMIN_BASE__}/team`, label: 'Team', icon: 'pi-users' },
+      { to: `${__ADMIN_BASE__}/blog`, label: 'Blog', icon: 'pi-book' },
     ],
   },
   {

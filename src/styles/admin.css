@@ -579,3 +579,29 @@
     z-index: 55;
   }
 }
+
+/* ---------- Blog editor ---------- */
+.md-toolbar {
+  display: flex;
+  gap: 4px;
+  padding: 6px;
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  background: var(--bg-soft);
+  flex-wrap: wrap;
+}
+
+.md-toolbar .icon-btn {
+  width: 30px;
+  height: 30px;
+  font-size: 12px;
+}
+
+textarea.md-editor {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  font-family: var(--mono) !important;
+  font-size: 13px !important;
+  line-height: 1.6;
+}

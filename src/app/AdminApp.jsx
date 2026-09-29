@@ -9,6 +9,7 @@ import SkillsAdminPage from '../pages/admin/SkillsAdminPage'
 import ServicesAdminPage from '../pages/admin/ServicesAdminPage'
 import TimelineAdminPage from '../pages/admin/TimelineAdminPage'
 import TeamAdminPage from '../pages/admin/TeamAdminPage'
+import BlogAdminPage from '../pages/admin/BlogAdminPage'
 import MessagesAdminPage from '../pages/admin/MessagesAdminPage'
 import ProfileAdminPage from '../pages/admin/ProfileAdminPage'
 import SettingsAdminPage from '../pages/admin/SettingsAdminPage'
@@ -32,6 +33,7 @@ export default function AdminApp() {
           <Route path="services" element={<ServicesAdminPage />} />
           <Route path="timeline" element={<TimelineAdminPage />} />
           <Route path="team" element={<TeamAdminPage />} />
+          <Route path="blog" element={<BlogAdminPage />} />
           <Route path="messages" element={<MessagesAdminPage />} />
           <Route path="profile" element={<ProfileAdminPage />} />
           <Route path="settings" element={<SettingsAdminPage />} />
