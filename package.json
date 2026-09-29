@@ -6,7 +6,7 @@
   "description": "Muhammad Walid — personal portfolio and admin dashboard",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/generate-route-pages.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
