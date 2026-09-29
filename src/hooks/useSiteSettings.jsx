@@ -31,6 +31,7 @@ export const DEFAULT_SETTINGS = {
   other_social_url: '',
   resume_url: '',
   footer_text: 'Designed and built with care.',
+  home_section_order: 'about,skills,projects,services,team',
 }
 
 const SiteSettingsContext = createContext(null)

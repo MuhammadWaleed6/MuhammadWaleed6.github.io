@@ -140,6 +140,23 @@ export default function SettingsAdminPage() {
                   onChange={(e) => setForm((prev) => ({ ...prev, footer_text: e.target.value }))}
                 />
               </div>
+
+              <div className="field">
+                <label htmlFor="sf-order">Home section order</label>
+                <input
+                  id="sf-order"
+                  type="text"
+                  value={form.home_section_order || ''}
+                  onChange={(e) => setForm((prev) => ({ ...prev, home_section_order: e.target.value }))}
+                  placeholder="about,skills,projects,services,team"
+                />
+                <span className="hint">
+                  Order of the home-page sections between the hero and the contact block.
+                  Comma-separated keys — any of: about, skills, projects, services, team.
+                  Example: <code>projects,about,skills,services,team</code>. Unknown keys are
+                  ignored, missing ones are added at the end.
+                </span>
+              </div>
             </div>
           </div>
 

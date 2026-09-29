@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useReveal } from '../../hooks/useReveal'
 
 /**
@@ -12,7 +13,7 @@ export default function AboutSection({ settings, compact = false }) {
     .filter(Boolean)
 
   const highlights = [
-    { label: 'Experience', value: '4 years of building for the web' },
+    { label: 'Experience', value: '3+ years of professional experience' },
     { label: 'Education', value: 'BBIT — Business & Information Technology' },
     { label: 'Focus', value: 'Modern web applications' },
     {
@@ -40,6 +41,9 @@ export default function AboutSection({ settings, compact = false }) {
             dashboard.
           </p>
         )}
+        <Link to="/about" className="btn btn-primary about-more-btn">
+          Want to know more about me <i className="pi pi-arrow-right" aria-hidden="true" />
+        </Link>
       </div>
 
       <div className="about-highlights" aria-label="Quick facts">
