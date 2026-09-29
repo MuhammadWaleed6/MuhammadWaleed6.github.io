@@ -8,12 +8,33 @@
  * render JS and those that don't see consistent metadata.
  *
  * Runs automatically after `vite build` (see package.json).
+ *
+ * Additionally, if SUPABASE_URL + SUPABASE_ANON_KEY are present in the
+ * environment (they are, during GitHub Actions builds), every published
+ * blog post also gets a static page at dist/blog/<slug>/index.html with
+ * its own title/description/canonical/og:image — so deep links to
+ * articles answer Google with a real 200 + correct metadata.
  */
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 
 const DIST = 'dist'
 const template = readFileSync(join(DIST, 'index.html'), 'utf8')
+
+async function fetchPublishedPosts() {
+  const url = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL
+  const key = process.env.VITE_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY
+  if (!url || !key) return []
+  try {
+    const res = await fetch(`${url.replace(/\/$/, '')}/rest/v1/blog_posts?select=title,slug,excerpt,cover_image_url&is_published=eq.true&order=sort_order.asc`, {
+      headers: { apikey: key, Authorization: `Bearer ${key}` },
+    })
+    if (!res.ok) return []
+    return await res.json()
+  } catch {
+    return []
+  }
+}
 
 const ROUTES = [
   {
@@ -76,7 +97,7 @@ function replaceFirst(html, regex, replacement, label) {
   return html.replace(regex, replacement)
 }
 
-function buildPage({ path, title, description }) {
+function buildPage({ path, title, description, image }) {
   const url = `https://mwalid.me${path}`
   let html = template
 
@@ -123,6 +144,16 @@ function buildPage({ path, title, description }) {
     `<meta name="twitter:description" content="${esc(description)}" />`,
     'twitter:description'
   )
+  if (image) {
+    if (/<meta\s+property="og:image"/.test(html)) {
+      html = html.replace(/<meta\s+property="og:image"[\s\S]*?\/>/, `<meta property="og:image" content="${esc(image)}" />`)
+    } else {
+      html = html.replace(
+        /<meta\s+name="twitter:card"[\s\S]*?\/>/,
+        `<meta property="og:image" content="${esc(image)}" />\n    <meta name="twitter:card" content="summary_large_image" />`
+      )
+    }
+  }
   return html
 }
 
@@ -137,4 +168,21 @@ for (const route of ROUTES) {
   console.log(`  ✓ ${route.path} → ${outFile}`)
 }
 
-console.log(`generate-route-pages: ${ROUTES.length} route pages written.`)
+// Static page per published blog post (needs Supabase env at build time)
+const posts = await fetchPublishedPosts()
+for (const post of posts) {
+  const html = buildPage({
+    path: `/blog/${post.slug}`,
+    title: `${post.title} — Blog`,
+    description: post.excerpt,
+    image: post.cover_image_url || undefined,
+  })
+  const outFile = join(DIST, 'blog', post.slug, 'index.html')
+  mkdirSync(dirname(outFile), { recursive: true })
+  writeFileSync(outFile, html)
+  console.log(`  ✓ /blog/${post.slug} → ${outFile}`)
+}
+
+console.log(
+  `generate-route-pages: ${ROUTES.length} route pages + ${posts.length} blog post pages written.`
+)
