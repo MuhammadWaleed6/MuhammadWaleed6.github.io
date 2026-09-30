@@ -9,6 +9,16 @@
   padding-top: calc(62px + 40px);
 }
 
+@media (max-width: 768px) {
+  .blogpost-hero {
+    padding: var(--space-6) 0 var(--space-5);
+  }
+
+  .public-shell:not(.is-dark-hero) .blogpost-hero {
+    padding-top: calc(62px + var(--space-4));
+  }
+}
+
 .blogpost-hero .back-link {
   display: inline-flex;
   align-items: center;

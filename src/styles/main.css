@@ -196,6 +196,19 @@ button {
   padding: var(--space-9) 0;
 }
 
+/* Mobile: breathe less — the fixed header already eats 62px */
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-7) 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: var(--space-6) 0;
+  }
+}
+
 .section-alt {
   background: var(--bg-soft);
 }

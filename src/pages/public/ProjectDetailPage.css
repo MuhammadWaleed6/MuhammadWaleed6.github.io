@@ -4,6 +4,12 @@
   padding: var(--space-8) 0 var(--space-6);
 }
 
+@media (max-width: 768px) {
+  .project-hero {
+    padding: var(--space-6) 0 var(--space-5);
+  }
+}
+
 .project-hero .back-link {
   display: inline-flex;
   align-items: center;
