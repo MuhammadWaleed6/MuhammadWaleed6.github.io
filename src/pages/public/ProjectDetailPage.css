@@ -1,6 +1,6 @@
 .project-hero {
-  background: var(--black);
-  color: var(--white);
+  background: var(--dark-surface);
+  color: var(--on-dark);
   padding: var(--space-8) 0 var(--space-6);
 }
 
@@ -15,7 +15,7 @@
 }
 
 .project-hero .back-link:hover {
-  color: var(--white);
+  color: var(--on-dark);
 }
 
 .project-hero .chip {
@@ -95,7 +95,7 @@
 }
 
 .project-detail .side-card {
-  background: var(--white);
+  background: var(--bg-soft);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: var(--space-5);

@@ -95,6 +95,10 @@
   color: var(--red-dark);
 }
 
+[data-theme='dark'] .post-content code {
+  color: #ff8fa0;
+}
+
 /* ---------- Share row ---------- */
 .share-row {
   display: flex;

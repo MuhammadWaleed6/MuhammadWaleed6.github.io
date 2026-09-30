@@ -2,8 +2,8 @@
   position: absolute;
   left: -9999px;
   top: 0;
-  background: var(--black);
-  color: var(--white);
+  background: var(--dark-surface);
+  color: var(--on-dark);
   padding: 10px 16px;
   border-radius: 0 0 8px 0;
   z-index: 200;
@@ -33,7 +33,7 @@
    Uses zero-valued (but animatable) shadows/blur instead of `none`. */
 .site-nav.at-top {
   padding: 12px 0;
-  background: rgba(255, 255, 255, 0);
+  background: transparent;
   backdrop-filter: blur(0px);
   box-shadow: 0 2px 12px rgba(17, 17, 17, 0);
 }
@@ -50,7 +50,7 @@
 }
 
 .site-nav.at-top {
-  background: rgba(255, 255, 255, 0);
+  background: transparent;
   border-bottom-color: transparent;
   backdrop-filter: blur(0px);
 }
@@ -60,17 +60,17 @@
 }
 
 .site-nav.at-top .nav-links a:hover {
-  color: var(--white);
+  color: var(--on-dark);
   background: rgba(255, 255, 255, 0.08);
 }
 
 .site-nav.at-top .nav-links a.active {
-  color: var(--white);
+  color: var(--on-dark);
   background: rgba(227, 24, 55, 0.55);
 }
 
 .site-nav.at-top .wordmark {
-  color: var(--white);
+  color: var(--on-dark);
 }
 
 /* hamburger stays dark — visible on white when menu bar area is over content */
@@ -79,12 +79,12 @@
 }
 
 .site-nav.at-top .nav-toggle span {
-  background: var(--white);
+  background: var(--on-dark);
 }
 
-/* once scrolled, everything returns to the solid white look */
+/* once scrolled, everything returns to the solid themed look */
 .site-nav.scrolled {
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--nav-bg);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
   box-shadow: 0 2px 12px rgba(17, 17, 17, 0.04);
@@ -100,7 +100,7 @@
   border-radius: 50%;
   border: none;
   background: var(--red);
-  color: var(--white);
+  color: var(--on-dark);
   font-size: 16px;
   cursor: pointer;
   box-shadow: var(--shadow-lg);

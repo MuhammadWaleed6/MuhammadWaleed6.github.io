@@ -49,6 +49,69 @@
 
   /* Motion */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Theme-invariant surfaces (dark hero, footer, featured card, red buttons) */
+  --on-dark: #ffffff;
+  --dark-surface: #111111;
+  --dark-surface-2: #1c1c1c;
+  --nav-bg: rgba(255, 255, 255, 0.92);
+  --border-hover: #d8d8d8;
+  --row-hover: #fcfcfc;
+  --success-bg: #eef9f2;
+  --success-text: #1e7d4d;
+  --success-border: #c8e9d6;
+}
+
+/* ---------- Dark theme (public site) ----------
+   Flips the text/surface tokens; fixed-dark surfaces use the
+   --dark-surface tokens so the hero/footer stay dark in both themes. */
+[data-theme='dark'] {
+  --red-soft: rgba(227, 24, 55, 0.16);
+  --red-dark: #f43b56;
+  --black: #f2f2f2;
+  --charcoal: #d9d9d9;
+  --charcoal-2: #2a2a2a;
+  --white: #141414;
+  --bg-soft: #0f0f0f;
+  --muted: #a3a3a3;
+  --muted-2: #7a7a7a;
+  --border: #2a2a2a;
+  --border-dark: rgba(255, 255, 255, 0.08);
+
+  --on-dark: #ffffff;
+  --dark-surface: #0d0d0d;
+  --dark-surface-2: #191919;
+  --nav-bg: rgba(13, 13, 13, 0.92);
+  --border-hover: #3d3d3d;
+  --row-hover: #1c1c1c;
+  --success-bg: rgba(43, 182, 115, 0.12);
+  --success-text: #4fd68f;
+  --success-border: rgba(43, 182, 115, 0.35);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.55);
+}
+
+/* The admin dashboard always stays light, whatever the public theme is.
+   PrimeReact dialogs/toasts render through a body portal (outside
+   .admin-shell), so they are pinned too — only the admin ever renders them. */
+[data-theme='dark'] .admin-shell,
+[data-theme='dark'] .auth-screen,
+[data-theme='dark'] .p-dialog,
+[data-theme='dark'] .p-toast,
+[data-theme='dark'] .p-confirm-popup {
+  --red-soft: rgba(227, 24, 55, 0.08);
+  --black: #111111;
+  --charcoal: #1c1c1c;
+  --charcoal-2: #242424;
+  --white: #ffffff;
+  --bg-soft: #f7f7f7;
+  --muted: #777777;
+  --muted-2: #999999;
+  --border: #e8e8e8;
+  --border-hover: #d8d8d8;
+  --row-hover: #fcfcfc;
 }
 
 /* ---------- Reset & base ---------- */
@@ -112,14 +175,14 @@ button {
 /* Selection */
 ::selection {
   background: var(--red);
-  color: var(--white);
+  color: var(--on-dark);
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: var(--bg-soft); }
-::-webkit-scrollbar-thumb { background: #d0d0d0; border-radius: 5px; }
-::-webkit-scrollbar-thumb:hover { background: #b8b8b8; }
+::-webkit-scrollbar-thumb { background: var(--muted-2); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
 
 /* ---------- Layout helpers ---------- */
 .container {
@@ -214,23 +277,23 @@ button {
 
 .btn-primary {
   background: var(--red);
-  color: var(--white);
+  color: var(--on-dark);
 }
 
 .btn-primary:hover {
   background: var(--red-dark);
-  color: var(--white);
+  color: var(--on-dark);
   box-shadow: 0 6px 18px rgba(227, 24, 55, 0.28);
 }
 
 .btn-dark {
-  background: var(--black);
-  color: var(--white);
+  background: var(--dark-surface);
+  color: var(--on-dark);
 }
 
 .btn-dark:hover {
-  background: var(--charcoal);
-  color: var(--white);
+  background: var(--dark-surface-2);
+  color: var(--on-dark);
 }
 
 .btn-outline {
@@ -251,8 +314,8 @@ button {
 }
 
 .btn-outline-light:hover {
-  border-color: var(--white);
-  color: var(--white);
+  border-color: var(--on-dark);
+  color: var(--on-dark);
 }
 
 .btn-ghost {
@@ -274,7 +337,7 @@ button {
 
 .btn-danger:hover {
   background: var(--red);
-  color: var(--white);
+  color: var(--on-dark);
 }
 
 .btn-sm {
@@ -314,7 +377,7 @@ button {
 
 .icon-btn.danger:hover {
   background: var(--red);
-  color: var(--white);
+  color: var(--on-dark);
 }
 
 .icon-btn:disabled {
@@ -337,7 +400,7 @@ button {
 
 .badge-red {
   background: var(--red);
-  color: var(--white);
+  color: var(--on-dark);
 }
 
 .badge-soft {
@@ -346,8 +409,8 @@ button {
 }
 
 .badge-dark {
-  background: var(--black);
-  color: var(--white);
+  background: var(--dark-surface);
+  color: var(--on-dark);
 }
 
 .badge-gray {
@@ -530,7 +593,7 @@ button {
 }
 
 .card-hover:hover {
-  border-color: #d8d8d8;
+  border-color: var(--border-hover);
   box-shadow: var(--shadow-md);
   transform: translateY(-3px);
 }
@@ -581,7 +644,7 @@ button {
 }
 
 .table tbody tr:hover {
-  background: #fcfcfc;
+  background: var(--row-hover);
 }
 
 /* ---------- States ---------- */
@@ -596,7 +659,7 @@ button {
 
 .state-block .pi {
   font-size: 26px;
-  color: #c5c5c5;
+  color: var(--muted-2);
   margin-bottom: var(--space-3);
 }
 
@@ -614,7 +677,7 @@ button {
 
 /* ---------- Skeletons ---------- */
 .skeleton {
-  background: linear-gradient(90deg, #efefef 25%, #f7f7f7 50%, #efefef 75%);
+  background: linear-gradient(90deg, var(--border) 25%, var(--bg-soft) 50%, var(--border) 75%);
   background-size: 200% 100%;
   animation: skeleton-wave 1.4s infinite;
   border-radius: var(--radius-sm);
@@ -630,7 +693,7 @@ button {
   width: 18px;
   height: 18px;
   border: 2px solid rgba(255, 255, 255, 0.35);
-  border-top-color: var(--white);
+  border-top-color: var(--on-dark);
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
 }

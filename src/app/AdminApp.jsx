@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import ProtectedAdminRoute from './ProtectedAdminRoute'
 import AdminLayout from '../components/admin/AdminLayout'
@@ -17,6 +18,18 @@ import SettingsAdminPage from '../pages/admin/SettingsAdminPage'
 const BASE = __ADMIN_BASE__
 
 export default function AdminApp() {
+  // The dashboard is designed for the light palette only: force it while the
+  // admin is mounted, then restore the visitor's public theme on the way out.
+  useEffect(() => {
+    const root = document.documentElement
+    const prev = root.getAttribute('data-theme')
+    root.setAttribute('data-theme', 'light')
+    return () => {
+      if (prev) root.setAttribute('data-theme', prev)
+      else root.removeAttribute('data-theme')
+    }
+  }, [])
+
   return (
     <Routes>
       {/* Login is reachable without a session */}

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { useSiteSettings } from '../../hooks/useSiteSettings'
 import { useScrollSpy } from '../../hooks/useScrollSpy'
+import useTheme from '../../hooks/useTheme'
 import './PublicLayout.css'
 
 const NAV_LINKS = [
@@ -17,6 +18,7 @@ const NAV_LINKS = [
 
 export default function PublicLayout() {
   const { settings } = useSiteSettings()
+  const { theme, toggle: toggleTheme } = useTheme()
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [showTop, setShowTop] = useState(false)
@@ -107,6 +109,16 @@ export default function PublicLayout() {
           </nav>
 
           <div className="nav-cta">
+            <button
+              type="button"
+              className="theme-toggle"
+              aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+              title={theme === 'dark' ? 'Light theme' : 'Dark theme'}
+              onClick={toggleTheme}
+            >
+              <i className="pi pi-moon" aria-hidden="true" />
+              <i className="pi pi-sun" aria-hidden="true" />
+            </button>
             {hasResume ? (
               <a className="btn btn-primary btn-sm" href={settings.resume_url} target="_blank" rel="noreferrer">
                 <i className="pi pi-download" aria-hidden="true" /> Resume
@@ -145,14 +157,25 @@ export default function PublicLayout() {
             <span className="mark" aria-hidden="true">MW</span>
             {settings.display_name}
           </Link>
-          <button
-            type="button"
-            className="drawer-close"
-            aria-label="Close menu"
-            onClick={() => setMenuOpen(false)}
-          >
-            <i className="pi pi-times" aria-hidden="true" />
-          </button>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              className="theme-toggle drawer-toggle"
+              aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+              onClick={toggleTheme}
+            >
+              <i className="pi pi-moon" aria-hidden="true" />
+              <i className="pi pi-sun" aria-hidden="true" />
+            </button>
+            <button
+              type="button"
+              className="drawer-close"
+              aria-label="Close menu"
+              onClick={() => setMenuOpen(false)}
+            >
+              <i className="pi pi-times" aria-hidden="true" />
+            </button>
+          </div>
         </div>
 
         <nav className="drawer-nav" aria-label="Mobile menu">
