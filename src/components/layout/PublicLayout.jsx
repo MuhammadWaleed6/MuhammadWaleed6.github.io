@@ -157,25 +157,14 @@ export default function PublicLayout() {
             <span className="mark" aria-hidden="true">MW</span>
             {settings.display_name}
           </Link>
-          <div className="flex gap-2">
-            <button
-              type="button"
-              className="theme-toggle drawer-toggle"
-              aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
-              onClick={toggleTheme}
-            >
-              <i className="pi pi-moon" aria-hidden="true" />
-              <i className="pi pi-sun" aria-hidden="true" />
-            </button>
-            <button
-              type="button"
-              className="drawer-close"
-              aria-label="Close menu"
-              onClick={() => setMenuOpen(false)}
-            >
-              <i className="pi pi-times" aria-hidden="true" />
-            </button>
-          </div>
+          <button
+            type="button"
+            className="drawer-close"
+            aria-label="Close menu"
+            onClick={() => setMenuOpen(false)}
+          >
+            <i className="pi pi-times" aria-hidden="true" />
+          </button>
         </div>
 
         <nav className="drawer-nav" aria-label="Mobile menu">

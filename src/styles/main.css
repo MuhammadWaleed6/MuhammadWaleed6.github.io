@@ -309,7 +309,7 @@ button {
 
 .btn-outline-light {
   background: transparent;
-  color: var(--white);
+  color: var(--on-dark);
   border-color: rgba(255, 255, 255, 0.28);
 }
 

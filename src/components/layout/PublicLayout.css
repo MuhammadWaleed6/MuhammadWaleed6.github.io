@@ -73,11 +73,8 @@
   color: var(--on-dark);
 }
 
-/* hamburger stays dark — visible on white when menu bar area is over content */
-.site-nav.at-top .nav-toggle {
-  background: rgba(255, 255, 255, 0.08);
-}
-
+/* hamburger is a plain icon — no box, just the bars;
+   bars stay light over the dark hero when the header is transparent */
 .site-nav.at-top .nav-toggle span {
   background: var(--on-dark);
 }
