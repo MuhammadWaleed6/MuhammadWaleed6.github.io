@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting…</title>
+    <script>
+      // GitHub Pages has no server-side routing: any direct visit to a deep
+      // link (e.g. /team/ayesha-malik) lands here. Store the intended path
+      // and bounce to the app root, which restores it after load.
+      (function () {
+        var path = location.pathname + location.search
+        if (path && path !== '/' && path !== '/index.html') {
+          try {
+            sessionStorage.setItem('gh-redirect-path', path)
+          } catch (e) {}
+        }
+        location.replace('/')
+      })()
+    </script>
+  </head>
+  <body></body>
+</html>
